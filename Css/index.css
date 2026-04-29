@@ -1,0 +1,575 @@
+/* =========================================
+   FIRMA DIGITAL — Sebastian Urrego Cárdenas
+   ========================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── VARIABLES ── */
+:root {
+  --gold:       #c9a96e;
+  --gold-light: #e8d5a3;
+  --dark:       #0d0d0d;
+  --dark-2:     #161616;
+  --dark-3:     #1e1e1e;
+  --silver:     #a8a8a8;
+  --white:      #f5f0ea;
+}
+
+/* ── BODY ── */
+body {
+  background: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 40px 20px;
+}
+
+/* ── CONTENEDOR FIRMA ── */
+.signature {
+  display: flex;
+  align-items: stretch;
+  background: var(--dark-2);
+  border: 1px solid #2a2a2a;
+  max-width: 680px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease both;
+}
+
+/* Línea dorada superior */
+.signature::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── FOTO ── */
+.sig-photo {
+  width: 140px;
+  min-width: 140px;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.sig-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: grayscale(20%) contrast(1.05);
+  transition: filter 0.4s ease;
+}
+
+.sig-photo:hover img {
+  filter: grayscale(0%) contrast(1.1);
+}
+
+/* Degradado lateral sobre la foto */
+.sig-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 60%, var(--dark-2));
+}
+
+/* ── CONTENIDO ── */
+.sig-content {
+  flex: 1;
+  padding: 24px 28px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ── NOMBRE ── */
+.sig-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.sig-name span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ── CARGO ── */
+.sig-role {
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin-top: 4px;
+}
+
+/* ── DIVISOR ── */
+.sig-divider {
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 6px 0;
+}
+
+/* ── BADGE DISPONIBLE ── */
+.sig-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+.sig-badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;  transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.4); }
+}
+
+/* ── INFO DE CONTACTO ── */
+.sig-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sig-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--silver);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  transition: color 0.25s ease;
+}
+
+.sig-link:hover {
+  color: var(--gold-light);
+}
+
+.sig-link svg {
+  width: 13px;
+  height: 13px;
+  fill: var(--gold);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* ── REDES SOCIALES ── */
+.sig-social {
+  display: flex;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #252525;
+}
+
+.sig-social a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #555;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.sig-social a:hover {
+  color: var(--gold);
+}
+
+.sig-social svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .signature {
+    flex-direction: column;
+  }
+
+  .sig-photo {
+    width: 100%;
+    height: 180px;
+  }
+
+  .sig-photo::after {
+    background: linear-gradient(180deg, transparent 60%, var(--dark-2));
+  }
+
+  .sig-content {
+    padding: 20px;
+  }
+
+  .sig-name {
+    font-size: 22px;
+  }
+}
+/* =========================================
+   FIRMA DIGITAL — Sebastian Urrego Cárdenas
+   ========================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── VARIABLES ── */
+:root {
+  --gold:       #c9a96e;
+  --gold-light: #e8d5a3;
+  --dark:       #0d0d0d;
+  --dark-2:     #161616;
+  --dark-3:     #1e1e1e;
+  --silver:     #a8a8a8;
+  --white:      #f5f0ea;
+}
+
+/* ── BODY ── */
+body {
+  background: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 40px 20px;
+}
+
+/* ── CONTENEDOR FIRMA ── */
+.signature {
+  display: flex;
+  align-items: stretch;
+  background: var(--dark-2);
+  border: 1px solid #2a2a2a;
+  max-width: 680px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease both;
+}
+
+/* Línea dorada superior */
+.signature::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── FOTO ── */
+.sig-photo {
+  width: 140px;
+  min-width: 140px;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.sig-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: grayscale(20%) contrast(1.05);
+  transition: filter 0.4s ease;
+}
+
+.sig-photo:hover img {
+  filter: grayscale(0%) contrast(1.1);
+}
+
+/* Degradado lateral sobre la foto */
+.sig-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 60%, var(--dark-2));
+}
+
+/* ── CONTENIDO ── */
+.sig-content {
+  flex: 1;
+  padding: 24px 28px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ── NOMBRE ── */
+.sig-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.sig-name span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ── CARGO ── */
+.sig-role {
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin-top: 4px;
+}
+
+/* ── DIVISOR ── */
+.sig-divider {
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 6px 0;
+}
+
+/* ── BADGE DISPONIBLE ── */
+.sig-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+.sig-badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;  transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.4); }
+}
+
+/* ── INFO DE CONTACTO ── */
+.sig-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.sig-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--silver);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  transition: color 0.25s ease;
+}
+
+.sig-link:hover {
+  color: var(--gold-light);
+}
+
+.sig-link svg {
+  width: 13px;
+  height: 13px;
+  fill: var(--gold);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* ── REDES SOCIALES ── */
+.sig-social {
+  display: flex;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #252525;
+}
+
+.sig-social a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #555;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.sig-social a:hover {
+  color: var(--gold);
+}
+
+.sig-social svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MÓVIL
+   ════════════════════════════════════════ */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .signature {
+    flex-direction: column;
+    max-width: 100%;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    min-height: 100vh;
+  }
+
+  /* Foto arriba, horizontal, con degradado hacia abajo */
+  .sig-photo {
+    width: 100%;
+    height: 260px;
+    min-width: unset;
+  }
+
+  .sig-photo img {
+    object-position: center 15%;
+  }
+
+  .sig-photo::after {
+    background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      var(--dark-2) 100%
+    );
+  }
+
+  /* Contenido */
+  .sig-content {
+    padding: 22px 20px 30px;
+    gap: 20px;
+  }
+
+  /* Nombre más grande en móvil para que luzca */
+  .sig-name {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .sig-role {
+    font-size: 8.5px;
+    letter-spacing: 0.28em;
+  }
+
+  .sig-divider {
+    margin: 8px 0;
+  }
+
+  /* Links de contacto más cómodos para touch */
+  .sig-info {
+    gap: 12px;
+  }
+
+  .sig-link {
+    font-size: 12px;
+    gap: 12px;
+    padding: 6px 0;
+  }
+
+  .sig-link svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* Redes sociales */
+  .sig-social {
+    gap: 0;
+    justify-content: space-between;
+    padding-top: 14px;
+  }
+
+  .sig-social a {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    padding: 8px 0;
+    gap: 7px;
+  }
+
+  .sig-social svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* Teléfonos muy pequeños (< 360px) */
+@media (max-width: 360px) {
+  .sig-photo {
+    height: 220px;
+  }
+
+  .sig-name {
+    font-size: 24px;
+  }
+
+  .sig-link {
+    font-size: 11px;
+  }
+}
